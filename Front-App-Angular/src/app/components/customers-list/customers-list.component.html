@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <!-- Heading -->
+  <h1 class="mb-4">List of Customers</h1>
+  <!-- Table to display customers -->
+  <table class="table">
+    <thead>
+      <!-- Table headers -->
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th *ngIf="hasRole('ADMIN')">Actions</th> <!-- New column for actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Iterate over the list of customers -->
+      <tr *ngFor="let customer of customers">
+        <!-- Accessing the properties of each customer -->
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.email }}</td>
+        <td *ngIf="hasRole('ADMIN')">
+          <!-- Button to edit customer -->
+          <button class="btn btn-primary" (click)="editCustomer(customer.id)">Edit</button>
+          <span>&nbsp;</span>
+          <!-- Button to trigger the confirmation modal -->
+          <button type="button" class="btn btn-danger" (click)="prepareDelete(customer)" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <span><a class="btn btn-success" routerLink="/customers/add" *ngIf="hasRole('ADMIN')">Add a new Customer</a></span>
+</div>
+
+<app-confirmation-modal 
+  [modalId]="'confirmDeleteModal'" 
+  [modalLabel]="'confirmDeleteModalLabel'" 
+  [title]="'Confirm Delete'" 
+  [htmlMessage]="deleteMessage"
+  (confirm)="deleteCustomer()"
+  #confirmationModal
+></app-confirmation-modal>

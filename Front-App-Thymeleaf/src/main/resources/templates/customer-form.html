@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+<title th:text="${formTitle}"></title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container mt-5">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header text-center">
+							<h1 class="card-title mb-0" th:text="${formTitle}"></h1>
+						</div>
+						<div class="card-body">
+							<form th:action="@{${actionUrl}}" th:object="${customer}"
+								method="post" class="custom-form">
+								<div class="mb-3">
+									<label for="name" class="form-label">Name</label> <input
+										type="text" class="form-control" id="name" th:field="*{name}"
+										required>
+								</div>
+								<div class="mb-3">
+									<label for="email" class="form-label">Email</label> <input
+										type="email" class="form-control" id="email" th:field="*{email}"
+										required>
+								</div>
+								<div class="d-grid gap-2">
+									<button type="submit" class="btn btn-primary"
+										th:text="${submitButtonLabel}"></button>
+									<a href="/customers" class="btn btn-danger">Cancel</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

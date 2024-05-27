@@ -1,0 +1,16 @@
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">Welcome to our Website</h1>
+                <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tempor urna
+                    sit amet justo convallis, non aliquam lorem vestibulum.</p>
+                <p class="text-center">
+                    <a *ngIf="isLoggedIn()" href="/customers" class="btn btn-primary">View Customers</a>
+                    <span>&nbsp;</span>
+                    <a *ngIf="hasRoleIn(['ADMIN'])" href="/products" class="btn btn-success">View Products</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

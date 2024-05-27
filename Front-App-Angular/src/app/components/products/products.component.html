@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <!-- Heading -->
+    <h1 class="mb-4">List of Products</h1>
+    <!-- Table to display products -->
+    <table class="table">
+      <thead>
+        <!-- Table headers -->
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Using *ngFor directive to iterate over the list of products -->
+        <tr *ngFor="let product of products">
+          <!-- Accessing the properties of each product -->
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

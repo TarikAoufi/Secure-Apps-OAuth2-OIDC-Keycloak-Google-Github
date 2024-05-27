@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+<title>List of Customers</title>
+</head>
+<body>
+	<!-- Define the content section -->
+	<div layout:fragment="content">
+		<div class="container mt-5">
+			<!-- Heading -->
+			<h1 class="mb-4">List of Customers</h1>
+			<!-- Table to display customers -->
+			<table class="table">
+				<thead>
+					<!-- Table headers -->
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Actions</th>
+						<!-- New column for actions -->
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Using Thymeleaf to iterate over the list of customers -->
+					<tr th:each="customer : ${customers}">
+						<!-- Accessing the properties of each customer -->
+						<td th:text="${customer.id}">ID</td>
+						<td th:text="${customer.name}">Name</td>
+						<td th:text="${customer.email}">Email</td>
+						<td>
+							<!-- Action buttons : Edit & Delete --> 
+							<div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+								<a class="btn btn-primary" th:href="@{/customers/{id}/edit(id=${customer.id})}">Edit</a>                            
+								<a href="#" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="'#deleteModal' + ${customer.id}">Delete</a>	
+							</div>					
+							<!--========= Modal =========-->
+							<div class="modal fade" th:id="'deleteModal' + ${customer.id}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="confirmDeleteModalLabel">Delete	Customer</h5>
+											<button type="button" class="btn-close"	data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">Are you sure you want to delete customer <strong th:text="${customer.name}"></strong>?
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">Close</button>
+											<!-- Hidden form for deletion -->
+											<form th:action="@{/customers/{id}(id=${customer.id})}" method="post" id="deleteForm">
+											    <input type="hidden" name="_method" value="DELETE" />
+											    <button type="submit" class="btn btn-danger">Delete</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- Add new customer action -->
+			<a th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" th:href="@{/customers/add}" class="btn btn-success">Add Customer</a>
+		</div>
+	</div>
+</body>
+</html>
