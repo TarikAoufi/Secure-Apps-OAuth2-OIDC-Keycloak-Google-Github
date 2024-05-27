@@ -14,13 +14,13 @@ This project stands out for its implementation of a secure and modern distribute
 
 Security and user experience are at the core of this project, with a particular focus on authentication and authorization:
 
-⦁ Authentication:
+### Authentication:
     
     ⦁ Front-App-Thymeleaf supports user authentication via Google, GitHub, or Keycloak.
         
     ⦁ Front-App-Angular uses Keycloak Angular to manage user authentication and authorization.
 
-⦁ Authorization: 
+### Authorization: 
 
     Access to features is controlled based on user roles, with mechanisms to display or hide certain functionalities according to assigned permissions. 
     Both frontend applications implement role-based access controls, ensuring secure management of CRUD (Create, Read, Update, Delete) operations.
