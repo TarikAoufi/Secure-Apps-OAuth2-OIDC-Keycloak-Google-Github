@@ -22,7 +22,8 @@ Security and user experience are at the core of this project, with a particular 
 
 ⦁ Authorization: 
 
-    Access to features is controlled based on user roles, with mechanisms to display or hide certain functionalities according to assigned permissions. Both frontend applications implement role-based access controls, ensuring secure management of CRUD (Create, Read, Update, Delete) operations.
+    Access to features is controlled based on user roles, with mechanisms to display or hide certain functionalities according to assigned permissions. 
+    Both frontend applications implement role-based access controls, ensuring secure management of CRUD (Create, Read, Update, Delete) operations.
 
 For security, three different providers are used: Google, GitHub, and Keycloak. Each frontend and backend application is secured using specific methods, ranging from form-based authentication to the use of JWT (JSON Web Tokens) for API REST authentication. Security best practices are rigorously followed throughout the development process.
 
