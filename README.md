@@ -48,3 +48,4 @@ Technologies Used:
     ⦁ Lombok
 
 In summary, this project demonstrates the implementation of a secure distributed architecture within a Maven multi-module setup, utilizing modern technologies for the development of frontend and backend applications, while ensuring fine-grained and secure management of roles and access.
+
